@@ -46,12 +46,13 @@ if(MSVC90)
   add_definitions(-DEIGEN_DONT_ALIGN_STATICALLY=1)
   message(STATUS "Disabling memory alignment for MSVC8")
 endif(MSVC90)
+include_directories(${EIGEN3_INCLUDE_DIR})
 
 # On the Mac platform, configure the RPATH as per the install, to
 # avoid the problem of loading both the built and installed versions
 # of the shared targets
 IF(APPLE)
-  SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE) 
+  SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
   SET(CMAKE_INSTALL_RPATH "")
 ENDIF(APPLE)
 
@@ -174,7 +175,7 @@ ENDIF(G2O_BUILD_EXAMPLES)
 # Compiler specific options for gcc
 IF(CMAKE_COMPILER_IS_GNUCXX)
   MESSAGE(STATUS "Compiling with GCC")
-  
+
   IF(NOT ${ARCH} MATCHES arm)
     # Generic settings for optimisation
     SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -msse4")
@@ -186,13 +187,13 @@ IF(CMAKE_COMPILER_IS_GNUCXX)
 
   # OS X
   #IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    #SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}") 
-    #SET(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}") 
+    #SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+    #SET(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
   #ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   # Linux
   IF(NOT ${ARCH} MATCHES arm AND ${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native") 
-    SET(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -march=native") 
+    SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
+    SET(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -march=native")
   ENDIF()
   # activate warnings !!!
   SET(g2o_C_FLAGS "${g2o_C_FLAGS} -Wall -W")
