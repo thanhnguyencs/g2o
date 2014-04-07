@@ -46,6 +46,7 @@ if(MSVC90)
   add_definitions(-DEIGEN_DONT_ALIGN_STATICALLY=1)
   message(STATUS "Disabling memory alignment for MSVC8")
 endif(MSVC90)
+include_directories(${EIGEN3_INCLUDE_DIR})
 
 # On the Mac platform, configure the RPATH as per the install, to
 # avoid the problem of loading both the built and installed versions
