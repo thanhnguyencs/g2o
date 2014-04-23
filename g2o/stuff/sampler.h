@@ -48,7 +48,7 @@
 #if __cplusplus > 199711L
 typedef std::mt19937 generator_type;
 #else
-typedef std::tr1::ranlux_base_01 generator_type
+typedef std::tr1::ranlux_base_01 generator_type;
 #endif
 
 namespace g2o {
