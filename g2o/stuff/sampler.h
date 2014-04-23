@@ -46,9 +46,6 @@
 #include "g2o_stuff_api.h"
 
 #if __cplusplus > 199711L
-namespace std {
-namespace tr1 = ::std;
-}
 typedef std::mt19937 generator_type;
 #else
 typedef std::tr1::ranlux_base_01 generator_type

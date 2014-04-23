@@ -67,7 +67,13 @@ int main(int argc, char** argv) {
  
   arg.parseArgs(argc, argv);
 
+#if __cplusplus > 199711L
+  std::random_device rd;
+  std::mt19937 generator(rd());
+#else
   std::tr1::ranlux_base_01 generator;
+#endif
+  
   OptimizableGraph graph;
   World world(&graph);
   for (int i=0; i<nlandmarks; i++){
