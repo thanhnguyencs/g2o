@@ -29,6 +29,8 @@
 
 #ifdef _MSC_VER
 #include <memory>
+#elif __cplusplus > 199711L
+#include <memory>
 #else
 #include <tr1/memory>
 #endif

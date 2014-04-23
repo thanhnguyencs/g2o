@@ -36,6 +36,8 @@
 
 #ifdef _MSC_VER
 #include <unordered_map>
+#elif __cplusplus > 199711L
+#include <unordered_map>
 #else
 #include <tr1/unordered_map>
 #endif

@@ -28,6 +28,8 @@
 
 #ifdef _MSC_VER
 #include <unordered_set>
+#elif __cplusplus > 199711L
+#include <unordered_set>
 #else
 #include <tr1/unordered_set>
 #endif

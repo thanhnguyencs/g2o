@@ -37,6 +37,8 @@
 
 #ifdef _MSC_VER
 #include <random>
+#elif __cplusplus > 199711L
+#include <random>
 #else
 #include <tr1/random>
 #endif
