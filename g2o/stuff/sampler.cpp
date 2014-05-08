@@ -28,8 +28,6 @@
 
 namespace g2o {
 
-#if __cplusplus > 199711L
-
 static std::normal_distribution<> _univariateSampler(0., 1.);
 static std::random_device rdevice;
 static generator_type* _gen_real = new generator_type(rdevice());
@@ -47,22 +45,4 @@ double sampleGaussian(generator_type* generator) {
   return _univariateSampler(*_gen_real);
 }
 
-#else
-
-static std::tr1::normal_distribution<double> _univariateSampler(0., 1.);
-static std::tr1::uniform_real<double> _uniformReal;
-static generator_type* _gen_real = new generator_type;
-
-double sampleUniform(double min, double max,
-                     generator_type* generator) {
-  if (generator) return _uniformReal(*generator) * (max - min) + min;
-  return _uniformReal(*_gen_real) * (max - min) + min;
-}
-
-double sampleGaussian(std::tr1::ranlux_base_01* generator) {
-  if (generator) return _univariateSampler(*generator);
-  return _univariateSampler(*_gen_real);
-}
-
-#endif
 }

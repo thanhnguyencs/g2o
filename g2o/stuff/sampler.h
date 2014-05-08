@@ -35,21 +35,11 @@
 #include <cmath>
 #include <ctime>
 
-#ifdef _MSC_VER
 #include <random>
-#elif __cplusplus > 199711L
-#include <random>
-#else
-#include <tr1/random>
-#endif
 
 #include "g2o_stuff_api.h"
 
-#if __cplusplus > 199711L
 typedef std::mt19937 generator_type;
-#else
-typedef std::tr1::ranlux_base_01 generator_type;
-#endif
 
 namespace g2o {
 
@@ -63,13 +53,8 @@ class GaussianSampler {
   GaussianSampler(bool hasGenerator = true) {
     _generator = 0;
     if (hasGenerator) {
-#if __cplusplus > 199711L
       std::random_device rdevice;
       _generator = new generator_type(rdevice());
-#else
-        _generator = new generator_type;
-
-#endif
     }
   }
   ~GaussianSampler() {
