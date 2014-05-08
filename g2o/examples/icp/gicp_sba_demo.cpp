@@ -25,13 +25,7 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <Eigen/StdVector>
-#ifdef _MSC_VER
 #include <random>
-#elif __cplusplus > 199711L
-#include <random>
-#else
-#include <tr1/random>
-#endif
 #include <iostream>
 #include <stdint.h>
 
@@ -42,11 +36,7 @@
 #include "g2o/solvers/csparse/linear_solver_csparse.h"
 #include "g2o/types/icp/types_icp.h"
 
-#if __cplusplus > 199711L
 typedef std::mt19937 generator_type;
-#else
-typedef std::tr1::ranlux_base_01 generator_type;
-#endif
 
 using namespace Eigen;
 using namespace std;
@@ -54,7 +44,7 @@ using namespace g2o;
 
 // sampling distributions
 class Sample {
-  static tr1::mt19937 gen_int;
+  static std::mt19937 gen_int;
   static generator_type gen_real;
 
  public:
@@ -65,31 +55,19 @@ class Sample {
   static double gaussian(double sigma);
 };
 
-tr1::mt19937 Sample::gen_int;
+std::mt19937 Sample::gen_int;
 
-#if __cplusplus > 199711L
 static std::random_device rd;
 generator_type Sample::gen_real(rd());
-#else
-generator_type Sample::gen_real;
-#endif
 
 int Sample::uniform(int from, int to) {
-#if __cplusplus > 199711L
   std::uniform_int_distribution<> unif(from, to);
-#else
-  tr1::uniform_int<int> unif(from, to);
-#endif
   int sam = unif(gen_int);
   return sam;
 }
 
 double Sample::uniform() {
-#if __cplusplus > 199711L
   std::uniform_real_distribution<double> unif(0.0, 1.0);
-#else
-  std::tr1::uniform_real<double> unif(0.0, 1.0);
-#endif
   double sam = unif(gen_real);
   return sam;
 }
