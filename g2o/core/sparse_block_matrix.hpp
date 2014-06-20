@@ -274,9 +274,9 @@ namespace g2o {
         if (destOffset > srcOffset) // only upper triangle
           break;
         // destVec += *a * srcVec (according to the sub-vector parts)
-        internal::axpy(*a, srcVec, srcOffset, destVec, destOffset);
+        internal::axpy<MatrixType>(*a, srcVec, srcOffset, destVec, destOffset);
         if (destOffset < srcOffset)
-          internal::atxpy(*a, srcVec, destOffset, destVec, srcOffset);
+          internal::atxpy<MatrixType>(*a, srcVec, destOffset, destVec, srcOffset);
       }
     }
   }

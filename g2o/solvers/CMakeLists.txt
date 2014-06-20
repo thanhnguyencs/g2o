@@ -9,6 +9,9 @@ ENDIF(CSPARSE_FOUND OR BUILD_CSPARSE)
 
 IF(CHOLMOD_FOUND)
   ADD_SUBDIRECTORY(cholmod)
+ELSEIF(WIN32)
+  # FIND_PACKAGE(SuiteSparse)
+  # INCLUDE_DIRECTORIES(${SuiteSparse_INC_DIRS})
 ENDIF(CHOLMOD_FOUND)
 
 # Sparse Module of Eigen is stable starting from 3.1
