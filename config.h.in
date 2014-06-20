@@ -19,4 +19,10 @@
 #  error "g2o requires column major Eigen matrices (see http://eigen.tuxfamily.org/bz/show_bug.cgi?id=422)"
 #endif
 
+#if __cplusplus > 199711L
+namespace std {
+  namespace tr1 = ::std;
+}
+#endif
+
 #endif

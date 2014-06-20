@@ -33,6 +33,7 @@
 #include <algorithm>
 #include <vector>
 #include <cstdio>
+#include <cstdlib>
 
 namespace g2o {
 
@@ -71,7 +72,7 @@ namespace g2o {
     bool enabled;
     TicTocInitializer()
     {
-      enabled = getenv("G2O_ENABLE_TICTOC") != NULL;
+      enabled = std::getenv("G2O_ENABLE_TICTOC") != NULL;
     }
     ~TicTocInitializer()
     {

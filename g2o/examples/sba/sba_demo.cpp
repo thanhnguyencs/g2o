@@ -26,11 +26,7 @@
 
 #include <Eigen/StdVector>
 
-#ifdef _MSC_VER
 #include <unordered_set>
-#else
-#include <tr1/unordered_set>
-#endif
 
 #include <iostream>
 #include <stdint.h>
@@ -371,8 +367,8 @@ int main(int argc, const char* argv[])
   sum_diff2 = 0;
 
 
-  for (tr1::unordered_map<int,int>::iterator it=pointid_2_trueid.begin();
-       it!=pointid_2_trueid.end(); ++it)
+  for (std::unordered_map<int,int>::iterator it = pointid_2_trueid.begin();
+       it != pointid_2_trueid.end(); ++it)
   {
 
     g2o::HyperGraph::VertexIDMap::iterator v_it
