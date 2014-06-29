@@ -39,7 +39,7 @@
 
 #include "g2o_stuff_api.h"
 
-typedef std::mt19937 generator_type;
+typedef std::default_random_engine generator_type;
 
 namespace g2o {
 
