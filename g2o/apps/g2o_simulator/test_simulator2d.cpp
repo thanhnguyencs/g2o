@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
   arg.parseArgs(argc, argv);
 
   std::random_device rd;
-  std::mt19937 generator(rd());
+  std::default_random_engine generator(rd());
 
   OptimizableGraph graph;
   World world(&graph);
